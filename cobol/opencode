@@ -8,6 +8,9 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BINARY="$SCRIPT_DIR/bin/OPENCODE-TUI"
 
+# Export script directory for COBOL to find ai-bridge.sh
+export OPENCODE_COBOL_DIR="$SCRIPT_DIR"
+
 # Check if binary exists
 if [ ! -f "$BINARY" ]; then
     echo "Binary not found. Building..."
@@ -43,6 +46,20 @@ cat << 'EOF'
     "PERFORM UNTIL END-OF-TASK"
 
 EOF
+
+# Check for API key
+if [ -n "$ANTHROPIC_API_KEY" ]; then
+    echo "  ✓ Anthropic API key detected"
+elif [ -n "$OPENAI_API_KEY" ]; then
+    echo "  ✓ OpenAI API key detected"
+elif [ -f "$SCRIPT_DIR/DATA/copilot_token.json" ]; then
+    echo "  ✓ GitHub Copilot token found"
+else
+    echo "  ⚠ No API key found. Options:"
+    echo "    - Use /login in app to authenticate with GitHub Copilot"
+    echo "    - Set ANTHROPIC_API_KEY or OPENAI_API_KEY"
+    echo "    Running in offline mode."
+fi
 
 echo ""
 echo "  Press ENTER to start..."

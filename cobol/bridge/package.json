@@ -1,0 +1,8 @@
+{
+  "name": "opencode-cobol-bridge",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@github/copilot-sdk": "latest"
+  }
+}

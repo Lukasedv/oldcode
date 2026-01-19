@@ -1,0 +1,18 @@
+# Compiled binaries
+bin/
+OBJECT/
+
+# Data files (tokens, history, user data)
+DATA/
+
+# Node.js bridge dependencies
+bridge/node_modules/
+bridge/package-lock.json
+
+# Temporary files
+*.tmp
+/tmp/
+*.log
+
+# Response files
+*-response.txt
