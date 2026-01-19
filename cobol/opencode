@@ -1,0 +1,52 @@
+#!/bin/bash
+# =========================================================================
+# OPENCODE COBOL EDITION - LAUNCHER
+# =========================================================================
+# Un-modernized AI Coding Agent - Now in COBOL!
+# =========================================================================
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BINARY="$SCRIPT_DIR/bin/OPENCODE-TUI"
+
+# Check if binary exists
+if [ ! -f "$BINARY" ]; then
+    echo "Binary not found. Building..."
+    cd "$SCRIPT_DIR" && make
+fi
+
+# Set terminal for COBOL screen handling
+export COB_SCREEN_ESC=Y
+export COB_SCREEN_EXCEPTIONS=Y
+
+# Clear screen and show splash
+clear
+cat << 'EOF'
+
+   ██████╗ ██████╗ ███████╗███╗   ██╗ ██████╗ ██████╗ ██████╗ ███████╗
+  ██╔═══██╗██╔══██╗██╔════╝████╗  ██║██╔════╝██╔═══██╗██╔══██╗██╔════╝
+  ██║   ██║██████╔╝█████╗  ██╔██╗ ██║██║     ██║   ██║██║  ██║█████╗  
+  ██║   ██║██╔═══╝ ██╔══╝  ██║╚██╗██║██║     ██║   ██║██║  ██║██╔══╝  
+  ╚██████╔╝██║     ███████╗██║ ╚████║╚██████╗╚██████╔╝██████╔╝███████╗
+   ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝
+                                                                       
+            ██████╗ ██████╗ ██████╗  ██████╗ ██╗                       
+           ██╔════╝██╔═══██╗██╔══██╗██╔═══██╗██║                       
+           ██║     ██║   ██║██████╔╝██║   ██║██║                       
+           ██║     ██║   ██║██╔══██╗██║   ██║██║                       
+           ╚██████╗╚██████╔╝██████╔╝╚██████╔╝███████╗                  
+            ╚═════╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚══════╝                  
+                                                                       
+    The Open Source AI Coding Agent - UN-MODERNIZED EDITION
+    
+    Written in COBOL • Compiled with GnuCOBOL • Runs on Ubuntu
+    
+    "PERFORM UNTIL END-OF-TASK"
+
+EOF
+
+echo ""
+echo "  Press ENTER to start..."
+read -r
+
+# Run the COBOL application
+exec "$BINARY"
